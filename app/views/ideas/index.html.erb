@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Hello <%= @current_user.name %>!</h1>
+
+    <form action="/ideas/<%= @current_user.id%>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="text" name="post[idea]" style="width:500px; height:40px;" placeholder="post something interesting if you dare!">
+      <input type="submit" class="btn btn-primary" value="idea!">
+    </form>
+    <% @ideas.each do |b|%>
+    <h4><a href="/users/<%= b.user_id %>"><%= b.user.name %> </a>says:</h4>
+      <div class="panel panel-default">
+        <div class="panel-body"><%= b.idea %> </div>
+      </div>
+       <p><a href="/bright_ideas/<%= b.id %>"><%= b.likes.count %> people</a> like this.</p>
+      <form action="/liked/<%= b.id %>" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="hidden" name="user_id" value="<%= @current_user.id %>">
+        <input type="hidden" name="idea" value="<%= b.id %>">
+        <input class="btn btn-primary" type="submit" value="Like">
+      </form>
+      <% if b.user.id == @current_user.id %>
+       <form action="/ideas/<%= b.id %>" method="post">
+         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+         <input type="hidden" name="_method" value="delete">
+         <button class="btn btn-primary" type="submit">Delete</button>
+       </form>
+       <% end %>
+
+
+
+
+    <% end %>
+
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome!</h1>
+    <div class="col-md-6">
+      <h2>Register</h2>
+      <form action="/register" method="post">
+       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+       <div class="form-group">
+         <label for="first_name">Name</label>
+         <input type="text" class="form-control" name="user[name]">
+       </div>
+       <div class="form-group">
+         <label for="last_name">Alias</label>
+         <input type="text" class="form-control" name="user[alias]">
+       </div>
+       <div class="form-group">
+         <label for="email">Email</label>
+         <input type="email" class="form-control" name="user[email]">
+       </div>
+
+       <div class="form-group">
+         <label for="Password">Password</label>
+         <input type="password" class="form-control" name="user[password]">
+         <h6>8 characters minimum</h6>
+       </div>
+       <div class="form-group">
+         <label for="Password">Password Confirmation</label>
+         <input type="password" class="form-control" name="user[password_confirmation]">
+       </div>
+       <input type="submit" class="btn btn-primary" value="Register">
+      </form>
+
+    </div>
+    <div class="col-md-6">
+      <form action="/login" method="post">
+        <div class="form-group">
+          <h2>Log In</h2>
+         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+          <label for="Password">Password</label>
+          <input type="password" class="form-control" name="password">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Log In">
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="jumbotron">
+
+
+  <div class="col-xs-6">
+    <a href="/bright_ideas">Back to Bright Ideas</a>
+    <h4><strong><a href="/users/<%= @idea.user.id %>"><%= @idea.user.name %></a></strong> says:</h4>
+    <div class="col-sm-4">
+       <div class="panel panel-default">
+         <p><%= @idea.idea %></p>
+       </div>
+   </div>
+
+
+  <h4>People who Liked this post:</h4>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Alias</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @idea.users_liked.uniq.each do |user| %>
+      <tr>
+        <td><a href="/users/<%= user.id %>"><%= user.alias %></a></td>
+        <td><%= user.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+
+</div>
